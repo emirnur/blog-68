@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% block styles %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock %}
+{% block content %}
+    <form action="#">
+      <div class="form-group">
+          <label for="A">Enter number A</label>
+          <input type="text" class="form-control" id="A"  placeholder="Enter number A">
+      </div>
+      <div class="form-group">
+          <label for="B">Enter number B</label>
+          <input type="text" class="form-control" id="B" placeholder="Enter number B">
+      </div>
+        <button type="submit" class="btn btn-primary" data-id="add" onclick="myCalc(this);">Add</button>
+        <button type="submit" class="btn btn-primary" data-id="subtract" onclick="myCalc(this);">Subtract</button>
+        <button type="submit" class="btn btn-primary" data-id="multiply" onclick="myCalc(this);">Multiply</button>
+        <button type="submit" class="btn btn-primary" data-id="divide" onclick="myCalc(this);">Divide</button>
+    </form>
+    <div class="result" id="result-div" style="width: 18rem;">
+        <p id="result"></p>
+    </div>
+{% endblock %}
+{% block scripts %}
+    <script type="application/javascript" src="{% static "js/calc.js" %}"></script>
+{% endblock %}

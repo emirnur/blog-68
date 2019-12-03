@@ -27,7 +27,7 @@ def add(request, *args, **kwargs):
             if digit_valid(str(data[item])) is True:
                 count += float(data[item])
             else:
-                response = JsonResponse({'error': "Symbols must be digits!"})
+                response = JsonResponse({'mistake': 'Symbols must be digits!'})
                 response.status_code = 400
                 return response
         return JsonResponse({'answer': count})
@@ -37,13 +37,12 @@ def add(request, *args, **kwargs):
 def subtract(request, *args, **kwargs):
     if request.method == 'POST':
         data = json.loads(request.body)
-        print(data)
         first_number = data.get('A')
         second_number = data.get('B')
         if (digit_valid(str(first_number)) is True) and (digit_valid(str(second_number)) is True):
             return JsonResponse({'answer': float(first_number) - float(second_number)})
         else:
-            response = JsonResponse({'error': "Symbols must be digits!"})
+            response = JsonResponse({'mistake': "Symbols must be digits!"})
             response.status_code = 400
             return response
 
@@ -52,13 +51,12 @@ def subtract(request, *args, **kwargs):
 def multiply(request, *args, **kwargs):
     if request.method == 'POST':
         data = json.loads(request.body)
-        print(data)
         first_number = data.get('A')
         second_number = data.get('B')
         if (digit_valid(str(first_number)) is True) and (digit_valid(str(second_number)) is True):
             return JsonResponse({'answer': float(first_number) * float(second_number)})
         else:
-            response = JsonResponse({'error': "Symbols must be digits!"})
+            response = JsonResponse({'mistake': "Symbols must be digits!"})
             response.status_code = 400
             return response
 
@@ -67,18 +65,17 @@ def multiply(request, *args, **kwargs):
 def divide(request, *args, **kwargs):
     if request.method == 'POST':
         data = json.loads(request.body)
-        print(data)
         first_number = data.get('A')
         second_number = data.get('B')
         if (digit_valid(str(first_number)) is True) and (digit_valid(str(second_number)) is True):
-            if int(second_number) == 0:
-                response = JsonResponse({'error': "Division by zero!"})
+            if float(second_number) == 0:
+                response = JsonResponse({'mistake': "Division by zero!"})
                 response.status_code = 400
                 return response
             else:
                 return JsonResponse({'answer': float(first_number) / float(second_number)})
         else:
-            response = JsonResponse({'error': "Symbols must be digits!"})
+            response = JsonResponse({'mistake': "Symbols must be digits!"})
             response.status_code = 400
             return response
 
